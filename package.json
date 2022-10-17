@@ -5,9 +5,15 @@
   "main": "index.js",
   "author": "Samuel Pires",
   "license": "MIT",
+  "scripts": {
+    "start:dev": "webpack --watch --progress",
+    "start:prod": "node dist/src/index.js",
+    "build": "tsc"
+  },
   "dependencies": {
     "@entria/graphql-mongo-helpers": "^1.1.2",
     "@entria/graphql-mongoose-loader": "^4.4.0",
+    "babel-loader": "^8.2.5",
     "bcryptjs": "^2.4.3",
     "dataloader": "^2.1.0",
     "graphql": "^16.6.0",
@@ -26,6 +32,11 @@
     "webpack-node-externals": "^3.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.12",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
     "@types/node": "^18.11.0",
     "typescript": "^4.8.4"
   }
