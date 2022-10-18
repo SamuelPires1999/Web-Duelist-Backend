@@ -7,7 +7,7 @@ import Router from 'koa-router';
 import { connectDatabase } from './database';
 import { graphqlSettingsPerReq } from './utils/graphqlSettingsPerReq';
 import { config } from './config';
-
+import koaPlayground from 'graphql-playground-middleware-koa';
 export const setupServer = () => {
   const app = new Koa();
   const router = new Router();
@@ -28,8 +28,12 @@ export const setupServer = () => {
     ctx.body = 'API WORKING';
   });
   router.all('/graphql', graphqlServer);
-  router.all(
+   router.all(
     '/graphiql',
+    koaPlayground({
+      endpoint: '/graphql',
+      workspaceName: 'dark',
+    }),
   );
 
   app.use(router.routes()).use(router.allowedMethods());
