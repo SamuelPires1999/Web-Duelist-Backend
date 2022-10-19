@@ -14,6 +14,9 @@ import { GraphQLContext } from '../../graphql/types';
 
 import { IUser } from './UserModel';
 import { load } from './UserLoader';
+import { CharacterConnection } from '../character/CharacterType';
+
+import * as CharacterLoader from '../character/CharacterLoader'
 
 const UserType = new GraphQLObjectType<IUser, GraphQLContext>({
   name: 'User',
@@ -29,6 +32,15 @@ const UserType = new GraphQLObjectType<IUser, GraphQLContext>({
     email: {
       type: GraphQLString,
       resolve: user => user.email,
+    },
+    characters: {
+      type: new GraphQLNonNull(CharacterConnection.connectionType),
+      args: {
+        ...connectionArgs
+      },
+      resolve: async (user, args, context) => {
+        return  CharacterLoader.loadAll(context, withFilter(args, {user: user._id}))
+      }
     },
     ...timestampResolver,
   }),

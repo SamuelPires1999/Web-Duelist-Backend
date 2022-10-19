@@ -1,6 +1,7 @@
 import { createLoader } from '@entria/graphql-mongo-helpers';
 
 import { registerLoader } from '../loader/loaderRegister';
+import { characterFilterMapping } from './CharacterFilterInputType';
 
 import CharacterModel from './CharacterModel';
 
@@ -13,6 +14,7 @@ const {
 } = createLoader({
   model: CharacterModel,
   loaderName: 'CharacterLoader',
+  filterMapping: characterFilterMapping
 });
 
 export { getLoader, clearCache, load, loadAll };
