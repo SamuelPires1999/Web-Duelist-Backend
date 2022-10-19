@@ -30,7 +30,6 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
-  characters: Types.ObjectId[];
   authenticate: (plainTextPassword: string) => boolean;
   encryptPassword: (password: string | undefined) => string;
   createdAt: Date;

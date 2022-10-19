@@ -34,7 +34,7 @@ const UserType = new GraphQLObjectType<IUser, GraphQLContext>({
       resolve: user => user.email,
     },
     characters: {
-      type: CharacterConnection.connectionType,
+      type: new GraphQLNonNull(CharacterConnection.connectionType),
       args: {
         ...connectionArgs
       },
