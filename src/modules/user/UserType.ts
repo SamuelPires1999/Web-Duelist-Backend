@@ -39,7 +39,7 @@ const UserType = new GraphQLObjectType<IUser, GraphQLContext>({
         ...connectionArgs
       },
       resolve: async (user, args, context) => {
-        await CharacterLoader.loadAll(context, withFilter(args, {user: user._id}))
+        return  CharacterLoader.loadAll(context, withFilter(args, {user: user._id}))
       }
     },
     ...timestampResolver,
