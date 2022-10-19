@@ -16,11 +16,6 @@ const UserSchema = new mongoose.Schema(
       type: String,
       hidden: true,
     },
-    characters: {
-      type: [Schema.Types.ObjectId],
-      ref: 'Character',
-      default: [],
-    },
   },
   {
     timestamps: {
